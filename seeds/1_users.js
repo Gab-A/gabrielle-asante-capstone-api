@@ -3,27 +3,27 @@ exports.seed = async function (knex) {
   await knex("users").insert([
     {
       id: 1,
-      name: "Aaliyah Wilson",
+      first_name: "Aaliyah",
+      last_name: "Wilson",
       email: "aaliyahwilson@true.com",
-      mood: "Happy",
     },
     {
       id: 2,
-      name: "Jordan Wood",
+      first_name: "Jordan",
+      last_name: "Wood",
       email: "jwood@skipe.com",
-      mood: "Gratitude",
     },
     {
       id: 3,
-      name: "Porsha Parks",
+      first_name: "Porsha",
+      last_name: "Parks",
       email: "porshaparks@tilted.com",
-      mood: "Tired",
     },
     {
       id: 4,
-      name: "Lucas Bridge",
+      first_name: "Lucas",
+      last_name: "Bridge",
       email: "lucasbridge@escape.com",
-      mood: "Anxious",
     },
   ]);
 };
