@@ -9,4 +9,6 @@ router.post("/", usersController.createUser);
 
 router.patch("/:id", usersController.updateUser);
 
+router.delete("/:id", usersController.deleteUser);
+
 module.exports = router;

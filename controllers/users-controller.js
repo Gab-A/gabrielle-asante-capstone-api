@@ -80,9 +80,27 @@ const updateUser = async (req, res) => {
     });
   }
 };
+
+const deleteUser = async (req, res) => {
+  try {
+    const outcome = await knex("users").where({ id: req.params.id }).del();
+
+    if (outcome === 0) {
+      return res
+        .status(404)
+        .json({ message: `The user ID,${req.params.id} could not be found` });
+    }
+    return res.status(204).json({
+      message: `User with ID, ${req.params.id} has been deleted successfully`,
+    });
+  } catch (error) {
+    res.status(500).json({ message: `Unable to delete user: ${error}` });
+  }
+};
 module.exports = {
   getAllUsers,
   getSingleUser,
   createUser,
   updateUser,
+  deleteUser,
 };
