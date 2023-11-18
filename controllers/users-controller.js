@@ -52,7 +52,7 @@ const createUser = async (req, res) => {
     res.status(201).send(createdUser);
   } catch (error) {
     res.status(500).json({
-      message: `Because of this ${error}, this user cannot created.`,
+      message: `Because of this ${error}, this user cannot be created.`,
     });
   }
 };
