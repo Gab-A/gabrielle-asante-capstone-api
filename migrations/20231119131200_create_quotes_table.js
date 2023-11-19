@@ -5,7 +5,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable("quotes", (table) => {
     table.increments("id").primary();
-    table.string("content").notNullable();
+    table.string("content", 1000).notNullable();
     table.string("author").notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table
