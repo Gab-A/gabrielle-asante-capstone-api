@@ -91,15 +91,15 @@ const updateJournal = async (req, res) => {
   //     .send({ message: `Journal with id ${req.params.id} could not be found` });
   // }
 
-  const requestedUser = req.body.users_id;
-  const checkUserExists = await knex("users")
-    .where({ id: requestedUser })
-    .first();
-  if (!checkUserExists) {
-    return res
-      .status(404)
-      .send({ message: `User with id ${requestedUser} does not exist.` });
-  }
+  // const requestedUser = req.body.users_id;
+  // const checkUserExists = await knex("users")
+  //   .where({ id: requestedUser })
+  //   .first();
+  // if (!checkUserExists) {
+  //   return res
+  //     .status(404)
+  //     .send({ message: `User with id ${requestedUser} does not exist.` });
+  // }
   try {
     const editJournal = await knex("journal")
       .where({ id: req.params.id })
