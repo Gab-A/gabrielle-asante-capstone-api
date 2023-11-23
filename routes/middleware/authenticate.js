@@ -10,10 +10,7 @@ const authenticate = async (req, res, next) => {
   try {
     const decodedToken = jwt.verify(authToken, process.env.JWT_KEY);
 
-    // 🌟 Add the user data to the req object so it can be used in endpoints
     req.user_id = decodedToken.id;
-
-    // 🌟 Continue to the endpoint
     next();
   } catch (error) {
     console.error(error);
