@@ -5,6 +5,8 @@ const journalController = require("../controllers/journal-controller");
 
 router.get("/", journalController.getAllJournals);
 
+router.get("/mood", journalController.getAllMoods);
+
 router.get("/:id", journalController.getJournalById);
 
 router.post("/", journalController.createJournal);

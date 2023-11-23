@@ -23,9 +23,25 @@ const getAllJournals = async (_req, res) => {
   }
 };
 
+const getAllMoods = async (_req, res) => {
+  console.log("Before query");
+  try {
+    const response = await knex("journal").select(
+      "journal.mood",
+      "journal.created_at"
+    );
+    console.log(response);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(400).send(`Error retrieving moods: ${error}`);
+  }
+};
+
 // Get jounral from user by ID:
 
 const getJournalById = async (req, res) => {
+  console.log("hello");
   try {
     const journal = await knex("journal")
       // .join("users", "users.id", "journal.users_id")
@@ -121,10 +137,13 @@ const deleteJournal = async (req, res) => {
   }
 };
 
+// Get Mood:
+
 module.exports = {
   getAllJournals,
   getJournalById,
   createJournal,
   updateJournal,
   deleteJournal,
+  getAllMoods,
 };
