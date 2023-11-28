@@ -6,7 +6,7 @@ exports.seed = async function (knex) {
       title: "Heart is full of gratitude",
       content:
         "My parents gifted me with something that I have always wanted. How thoughful and generous of them, my heart is full of gratitude.",
-      mood: "Gratitude",
+      mood: "Grateful",
       users_id: 2,
     },
     {
