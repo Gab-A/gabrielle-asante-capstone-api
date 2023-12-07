@@ -33,7 +33,7 @@ const getSingleUser = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const { first_name, last_name, email } = req.body;
+  const { first_name, last_name, email, password } = req.body;
 
   if (!first_name || !last_name || !email) {
     return res.status(400).json({
@@ -44,6 +44,7 @@ const createUser = async (req, res) => {
     first_name: first_name,
     last_name: last_name,
     email: email,
+    password: password,
   };
 
   try {
