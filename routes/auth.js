@@ -31,8 +31,16 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
+  if (!email && !password) {
     return res.status(404).send("Please enter the required fields");
+  }
+
+  if (!email) {
+    return res.status(400).send("Email is a required field");
+  }
+
+  if (!password) {
+    return res.status(400).send("Password is a required field");
   }
 
   const user = await knex("users").where({ email: email }).first();
