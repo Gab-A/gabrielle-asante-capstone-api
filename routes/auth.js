@@ -6,8 +6,24 @@ const jwt = require("jsonwebtoken");
 router.post("/register", async (req, res) => {
   const { first_name, last_name, email, password } = req.body;
 
-  if (!first_name || !last_name || !email || !password) {
+  if (!first_name && !last_name && !email && !password) {
     return res.status(400).send("Please enter the required fields");
+  }
+
+  if (!first_name) {
+    return res.status(400).send("First name is a required field");
+  }
+
+  if (!last_name) {
+    return res.status(400).send("Last name is a required field");
+  }
+
+  if (!email) {
+    return res.status(400).send("Email is a required field");
+  }
+
+  if (!password) {
+    return res.status(400).send("Password is a required field");
   }
 
   const hashedPassword = bcrypt.hashSync(password);
