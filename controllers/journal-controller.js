@@ -1,16 +1,18 @@
 const knex = require("knex")(require("../knexfile"));
 
-const getAllJournals = async (_req, res) => {
+const getAllJournals = async (req, res) => {
   try {
-    const response = await knex("journal").select(
-      "journal.id",
-      "journal.users_id",
-      "journal.content",
-      "journal.title",
-      "journal.mood",
-      "journal.created_at",
-      "journal.updated_at"
-    );
+    const response = await knex("journal")
+      .select(
+        "journal.id",
+        "journal.users_id",
+        "journal.content",
+        "journal.title",
+        "journal.mood",
+        "journal.created_at",
+        "journal.updated_at"
+      )
+      .where("journal.users_id", req.user_id);
     res.status(200).json(response);
     console.log(response);
   } catch (error) {
@@ -19,13 +21,11 @@ const getAllJournals = async (_req, res) => {
   }
 };
 
-const getAllMoods = async (_req, res) => {
+const getAllMoods = async (req, res) => {
   try {
-    const response = await knex("journal").select(
-      "journal.id",
-      "journal.mood",
-      "journal.created_at"
-    );
+    const response = await knex("journal")
+      .select("journal.id", "journal.mood", "journal.created_at")
+      .where("journal.users_id", req.user_id);
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
@@ -58,7 +58,10 @@ const getJournalById = async (req, res) => {
 };
 
 const createJournal = async (req, res) => {
-  const { content, title, users_id, mood } = req.body;
+  const user_id = req.user_id;
+  const { content, title, mood } = req.body;
+
+  console.log("Before", req.user_id);
 
   if (!title && !content) {
     res.status(400).send("Please enter a title and content for your journal");
@@ -69,10 +72,12 @@ const createJournal = async (req, res) => {
       .status(400)
       .send("Please include a valid content to your journal");
   } else {
+    console.log("This is User Id:", req.user_id);
     const newJournal = {
       content,
       title,
       mood,
+      users_id: user_id,
     };
 
     try {

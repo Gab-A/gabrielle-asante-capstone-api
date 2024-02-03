@@ -1,18 +1,19 @@
 const router = require("express").Router();
 const journalController = require("../controllers/journal-controller");
+const authenticate = require("./middleware/authenticate");
 
 // get all journals:
 
-router.get("/", journalController.getAllJournals);
+router.get("/", authenticate, journalController.getAllJournals);
 
-router.get("/mood", journalController.getAllMoods);
+router.get("/mood", authenticate, journalController.getAllMoods);
 
-router.get("/:id", journalController.getJournalById);
+router.get("/:id", authenticate, journalController.getJournalById);
 
-router.post("/", journalController.createJournal);
+router.post("/", authenticate, journalController.createJournal);
 
-router.patch("/:id", journalController.updateJournal);
+router.patch("/:id", authenticate, journalController.updateJournal);
 
-router.delete("/:id", journalController.deleteJournal);
+router.delete("/:id", authenticate, journalController.deleteJournal);
 
 module.exports = router;
