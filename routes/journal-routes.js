@@ -2,8 +2,6 @@ const router = require("express").Router();
 const journalController = require("../controllers/journal-controller");
 const authenticate = require("./middleware/authenticate");
 
-// get all journals:
-
 router.get("/", authenticate, journalController.getAllJournals);
 
 router.get("/mood", authenticate, journalController.getAllMoods);
