@@ -21,6 +21,10 @@ app.use("/quotes", quotesController);
 app.use("/auth", authRoutes);
 app.use("/my-profile", profileRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.listen(port, () => {
   console.log(`running at http://localhost:${port}`);
 });
